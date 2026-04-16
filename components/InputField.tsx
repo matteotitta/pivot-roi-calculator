@@ -2,6 +2,13 @@
 
 import { useState, useCallback } from "react";
 import type { InputFieldConfig } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import { Info } from "lucide-react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 interface Props {
   config: InputFieldConfig;
@@ -11,7 +18,6 @@ interface Props {
 
 export default function InputField({ config, value, onChange }: Props) {
   const [focused, setFocused] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
 
   const formatDisplay = useCallback(
     (v: number) => {
@@ -48,44 +54,38 @@ export default function InputField({ config, value, onChange }: Props) {
   return (
     <div className="group">
       <div className="flex items-center gap-1.5 mb-1.5">
-        <label className="text-sm font-medium text-pivot-text/80">
+        <label className="text-sm font-medium text-foreground/80">
           {config.label}
-          {config.required && <span className="text-red-500 ml-0.5">*</span>}
+          {config.required && <span className="text-destructive ml-0.5">*</span>}
         </label>
         {config.tooltip && (
-          <div className="relative">
-            <button
-              type="button"
-              className="w-4 h-4 rounded-full bg-pivot-text/10 text-pivot-text/50 text-[10px] flex items-center justify-center hover:bg-pivot-text/20 transition-colors"
-              onMouseEnter={() => setShowTooltip(true)}
-              onMouseLeave={() => setShowTooltip(false)}
-              onClick={() => setShowTooltip(!showTooltip)}
+          <Tooltip>
+            <TooltipTrigger
+              className="size-4 rounded-full bg-muted text-muted-foreground text-[10px] inline-flex items-center justify-center hover:bg-muted-foreground/20 transition-colors"
             >
-              ?
-            </button>
-            {showTooltip && (
-              <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-pivot-dark text-pivot-dark-text text-xs rounded-lg shadow-lg">
-                <p>{config.tooltip}</p>
-                {config.benchmark && (
-                  <p className="mt-1.5 text-pivot-primary/80 font-medium">
-                    Benchmark: {config.benchmark}
-                  </p>
-                )}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-pivot-dark rotate-45" />
-              </div>
-            )}
-          </div>
+              <Info className="size-2.5" />
+            </TooltipTrigger>
+            <TooltipContent side="top" className="max-w-xs">
+              <p>{config.tooltip}</p>
+              {config.benchmark && (
+                <p className="mt-1.5 text-primary font-medium">
+                  Benchmark: {config.benchmark}
+                </p>
+              )}
+            </TooltipContent>
+          </Tooltip>
         )}
       </div>
       <div
-        className={`flex items-center rounded-lg border transition-all ${
+        className={cn(
+          "flex items-center rounded-lg border transition-all bg-background",
           focused
-            ? "border-pivot-primary ring-2 ring-pivot-primary/30"
-            : "border-pivot-text/15 hover:border-pivot-text/30"
-        } bg-white`}
+            ? "border-ring ring-3 ring-ring/50"
+            : "border-input hover:border-foreground/30"
+        )}
       >
         {prefix && (
-          <span className="pl-3 text-sm text-pivot-text/40 select-none">
+          <span className="pl-3 text-sm text-muted-foreground select-none">
             {prefix}
           </span>
         )}
@@ -96,10 +96,14 @@ export default function InputField({ config, value, onChange }: Props) {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={`w-full py-2.5 ${prefix ? "pl-1" : "pl-3"} ${suffix ? "pr-1" : "pr-3"} text-sm bg-transparent outline-none text-pivot-text`}
+          className={cn(
+            "w-full py-2.5 text-sm bg-transparent outline-none text-foreground",
+            prefix ? "pl-1" : "pl-3",
+            suffix ? "pr-1" : "pr-3"
+          )}
         />
         {suffix && (
-          <span className="pr-3 text-sm text-pivot-text/40 select-none">
+          <span className="pr-3 text-sm text-muted-foreground select-none">
             {suffix}
           </span>
         )}

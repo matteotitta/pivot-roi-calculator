@@ -1,26 +1,30 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 import Calculator from "@/components/Calculator";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-pivot-text/5 bg-white sticky top-0 z-50 no-print">
+      <header className="border-b bg-background sticky top-0 z-50 no-print">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Image
-            src="/pivot-logo.svg"
+            src="/pivot-logo-dark.svg"
             alt="Pivot"
             width={90}
             height={28}
+            className="w-auto h-auto"
             priority
           />
           <a
-            href="https://www.pivotapp.ai/request-a-demo"
+            href="https://www.pivotapp.ai/book-a-demo"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-pivot-text/70 hover:text-pivot-text transition-colors"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted"
           >
-            Book a demo →
+            Book a demo
+            <ExternalLink className="size-3.5" />
           </a>
         </div>
       </header>
@@ -48,15 +52,15 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-pivot-text/5 py-6 no-print">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-pivot-text/40">
+      <footer className="border-t py-6 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <p>
             Powered by{" "}
             <a
               href="https://www.pivotapp.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pivot-text/60 hover:text-pivot-text underline"
+              className="text-foreground/60 hover:text-foreground underline"
             >
               Pivot
             </a>{" "}

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import type { CalculatorInputs, CalculationResults } from "@/lib/types";
 import { defaultInputs } from "@/lib/defaults";
 import { calculate } from "@/lib/calculations";
+import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 import InputStep from "./InputStep";
 import ResultsStep from "./ResultsStep";
 import SummaryStep from "./SummaryStep";
@@ -42,28 +44,33 @@ export default function Calculator() {
         {steps.map((s, i) => (
           <div key={s} className="flex items-center gap-2">
             <div
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={cn(
+                "flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all",
                 i <= currentIdx
-                  ? "bg-pivot-primary text-pivot-text"
-                  : "bg-gray-100 text-pivot-text/40"
-              }`}
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground"
+              )}
             >
               <span
-                className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                className={cn(
+                  "size-5 rounded-full flex items-center justify-center text-[10px] font-bold",
                   i < currentIdx
-                    ? "bg-pivot-text text-pivot-primary"
+                    ? "bg-foreground text-primary"
                     : i === currentIdx
-                      ? "bg-pivot-text/80 text-pivot-primary"
-                      : "bg-gray-200 text-gray-400"
-                }`}
+                      ? "bg-foreground/80 text-primary"
+                      : "bg-muted-foreground/20 text-muted-foreground"
+                )}
               >
-                {i < currentIdx ? "✓" : i + 1}
+                {i < currentIdx ? <Check className="size-3" /> : i + 1}
               </span>
               <span className="hidden sm:inline">{STEP_LABELS[s]}</span>
             </div>
             {i < steps.length - 1 && (
               <div
-                className={`w-8 h-0.5 ${i < currentIdx ? "bg-pivot-primary" : "bg-gray-200"}`}
+                className={cn(
+                  "w-8 h-0.5 rounded-full",
+                  i < currentIdx ? "bg-primary" : "bg-border"
+                )}
               />
             )}
           </div>

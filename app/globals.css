@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --pivot-primary: #EFFE53;
+  --pivot-secondary: #D4E244;
+  --pivot-accent: #EDFBC2;
+  --pivot-bg: #FFFFFF;
+  --pivot-text: #1B1B18;
+  --pivot-dark: #2A2A28;
+  --pivot-dark-border: #474642;
+  --pivot-dark-text: #EDEDEC;
+  --pivot-btn-secondary: #161615;
+}
+
+@theme inline {
+  --color-pivot-primary: var(--pivot-primary);
+  --color-pivot-secondary: var(--pivot-secondary);
+  --color-pivot-accent: var(--pivot-accent);
+  --color-pivot-bg: var(--pivot-bg);
+  --color-pivot-text: var(--pivot-text);
+  --color-pivot-dark: var(--pivot-dark);
+  --color-pivot-dark-border: var(--pivot-dark-border);
+  --color-pivot-dark-text: var(--pivot-dark-text);
+  --color-pivot-btn-secondary: var(--pivot-btn-secondary);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--pivot-bg);
+  color: var(--pivot-text);
+  font-family: var(--font-sans);
+}
+
+/* Number input: hide spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Print styles for summary */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

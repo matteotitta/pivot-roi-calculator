@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import AnimatedNumber from "./AnimatedNumber";
 import CategoryCard from "./CategoryCard";
 import {
@@ -29,7 +29,11 @@ interface Props {
   onViewSummary: () => void;
 }
 
-const CATEGORY_COLORS = ["#EFFE53", "#2A2A28", "#D4E244"];
+const CATEGORY_COLORS = [
+  "var(--pivot-primary)",
+  "var(--pivot-dark)",
+  "var(--pivot-secondary)",
+];
 
 export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
   const [scenario, setScenario] = useState<Scenario>("likely");
@@ -192,7 +196,14 @@ export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
                   />
                   <Bar dataKey="value" radius={[6, 6, 0, 0]}>
                     {barData.map((_, i) => (
-                      <Cell key={i} fill={i === 2 ? "#EFFE53" : "#D4E244"} />
+                      <Cell
+                        key={i}
+                        fill={
+                          i === 2
+                            ? "var(--pivot-primary)"
+                            : "var(--pivot-secondary)"
+                        }
+                      />
                     ))}
                   </Bar>
                 </BarChart>
@@ -203,14 +214,35 @@ export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
       </div>
 
       {/* Actions */}
-      <div className="flex flex-col sm:flex-row gap-3 pt-2">
-        <Button variant="outline" className="flex-1" onClick={onBack}>
-          <ArrowLeft data-icon="inline-start" />
-          Edit inputs
-        </Button>
-        <Button className="flex-1" onClick={onViewSummary}>
-          View full summary
-          <ArrowRight data-icon="inline-end" />
+      <div className="flex flex-col gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Button variant="outline" className="flex-1" onClick={onBack}>
+            <ArrowLeft data-icon="inline-start" />
+            Edit inputs
+          </Button>
+          <Button
+            variant="outline"
+            className="flex-1"
+            onClick={onViewSummary}
+          >
+            View full summary
+            <ArrowRight data-icon="inline-end" />
+          </Button>
+        </div>
+        <Button
+          size="lg"
+          className="w-full py-6 text-base font-semibold no-print"
+          nativeButton={false}
+          render={
+            <a
+              href="https://www.pivotapp.ai/book-a-demo"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          }
+        >
+          Book a demo to capture these savings
+          <ExternalLink data-icon="inline-end" />
         </Button>
       </div>
     </div>

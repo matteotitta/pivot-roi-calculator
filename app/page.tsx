@@ -10,22 +10,27 @@ export default function Home() {
       <header className="border-b bg-background sticky top-0 z-50 no-print">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Image
-            src="/pivot-logo-dark.svg"
+            src="/pivot-logo-on-light.svg"
             alt="Pivot"
-            width={90}
-            height={28}
-            className="w-auto h-auto"
+            width={103}
+            height={24}
+            className="h-6 w-auto"
             priority
           />
-          <a
-            href="https://www.pivotapp.ai/book-a-demo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted"
+          <Button
+            size="sm"
+            nativeButton={false}
+            render={
+              <a
+                href="https://www.pivotapp.ai/book-a-demo"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            }
           >
             Book a demo
-            <ExternalLink className="size-3.5" />
-          </a>
+            <ExternalLink data-icon="inline-end" />
+          </Button>
         </div>
       </header>
 

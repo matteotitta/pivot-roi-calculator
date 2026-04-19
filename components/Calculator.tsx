@@ -6,6 +6,7 @@ import { defaultInputs } from "@/lib/defaults";
 import { calculate } from "@/lib/calculations";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 import InputStep from "./InputStep";
 import ResultsStep from "./ResultsStep";
 import SummaryStep from "./SummaryStep";
@@ -36,9 +37,15 @@ export default function Calculator() {
 
   const steps: Step[] = ["inputs", "results", "summary"];
   const currentIdx = steps.indexOf(step);
+  const progressPct = ((currentIdx + 1) / steps.length) * 100;
 
   return (
     <div className="w-full max-w-3xl mx-auto">
+      {/* Progress bar */}
+      <div className="max-w-xs mx-auto mb-4 no-print">
+        <Progress value={progressPct} />
+      </div>
+
       {/* Progress stepper */}
       <div className="flex items-center justify-center gap-2 mb-8 no-print">
         {steps.map((s, i) => (

@@ -75,6 +75,12 @@ export interface InputFieldConfig {
   required?: boolean;
   tooltip?: string;
   benchmark?: string;
+  /** Slider min (only used when type === "percent"). Defaults to 0. */
+  min?: number;
+  /** Slider max (only used when type === "percent"). Defaults to 100. */
+  max?: number;
+  /** Slider step (only used when type === "percent"). Defaults to 1. */
+  step?: number;
 }
 
 export interface InputSection {

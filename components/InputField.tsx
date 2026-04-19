@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import type { InputFieldConfig } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Info } from "lucide-react";
@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
+import { Slider } from "@/components/ui/slider";
 
 interface Props {
   config: InputFieldConfig;
@@ -31,6 +32,10 @@ export default function InputField({ config, value, onChange }: Props) {
 
   const [displayValue, setDisplayValue] = useState(formatDisplay(value));
 
+  useEffect(() => {
+    if (!focused) setDisplayValue(formatDisplay(value));
+  }, [value, focused, formatDisplay]);
+
   const handleFocus = () => {
     setFocused(true);
     setDisplayValue(String(value));
@@ -50,6 +55,12 @@ export default function InputField({ config, value, onChange }: Props) {
 
   const prefix = config.type === "currency" ? "$" : "";
   const suffix = config.type === "percent" ? "%" : "";
+
+  const isPercent = config.type === "percent";
+  const sliderMin = config.min ?? 0;
+  const sliderMax = config.max ?? 100;
+  const sliderStep = config.step ?? 1;
+  const clampedValue = Math.max(sliderMin, Math.min(sliderMax, value));
 
   return (
     <div className="group">
@@ -108,6 +119,24 @@ export default function InputField({ config, value, onChange }: Props) {
           </span>
         )}
       </div>
+      {isPercent && (
+        <div className="px-1 pt-3">
+          <Slider
+            value={[clampedValue]}
+            onValueChange={(v) =>
+              onChange(config.key, Array.isArray(v) ? v[0] : v)
+            }
+            min={sliderMin}
+            max={sliderMax}
+            step={sliderStep}
+            aria-label={config.label}
+          />
+          <div className="flex justify-between text-[10px] text-muted-foreground/60 mt-1.5 tabular-nums">
+            <span>{sliderMin}%</span>
+            <span>{sliderMax}%</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

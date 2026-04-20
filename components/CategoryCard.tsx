@@ -32,9 +32,9 @@ export default function CategoryCard({ result, scenario, color, percentage }: Pr
   const total = result.total[scenario];
 
   return (
-    <Card className="p-0 gap-0">
+    <Card className="p-0 gap-0 shadow-sm border-foreground/10 overflow-hidden">
       <Collapsible open={expanded} onOpenChange={setExpanded}>
-        <CollapsibleTrigger className="w-full px-5 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors cursor-pointer">
+        <CollapsibleTrigger className="w-full px-5 py-4 flex items-center justify-between bg-pivot-accent/40 hover:bg-pivot-accent/70 transition-colors cursor-pointer">
           <div className="flex items-center gap-3">
             <div
               className="size-3 rounded-full"

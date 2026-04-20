@@ -1,13 +1,12 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
 import Calculator from "@/components/Calculator";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-background sticky top-0 z-50 no-print">
+      <header className="border-b border-pivot-secondary/50 bg-pivot-accent sticky top-0 z-50 no-print">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Image
             src="/pivot-logo-on-light.svg"
@@ -29,7 +28,6 @@ export default function Home() {
             }
           >
             Book a demo
-            <ExternalLink data-icon="inline-end" />
           </Button>
         </div>
       </header>
@@ -57,15 +55,15 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t py-6 no-print">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+      <footer className="bg-pivot-dark border-t border-pivot-dark-border py-8 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-pivot-dark-text/70">
           <p>
             Powered by{" "}
             <a
               href="https://www.pivotapp.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground/60 hover:text-foreground underline"
+              className="text-pivot-primary hover:text-pivot-dark-text underline"
             >
               Pivot
             </a>{" "}

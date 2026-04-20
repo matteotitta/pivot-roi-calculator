@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import AnimatedNumber from "./AnimatedNumber";
 import CategoryCard from "./CategoryCard";
 import {
@@ -61,10 +60,10 @@ export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
   return (
     <div className="flex flex-col gap-6">
       {/* Hero metric */}
-      <div className="text-center py-6 bg-pivot-dark rounded-2xl">
-        <p className="text-sm font-medium text-pivot-dark-text/60 uppercase tracking-wide">
+      <div className="text-center py-8 bg-pivot-dark rounded-2xl shadow-lg">
+        <span className="inline-block bg-pivot-accent text-pivot-text text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">
           Projected annual savings
-        </p>
+        </span>
         <AnimatedNumber
           value={results.totalAnnual[scenario]}
           className="block text-4xl sm:text-5xl font-bold text-pivot-primary mt-2"
@@ -217,7 +216,6 @@ export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
       <div className="flex flex-col gap-3 pt-2">
         <div className="flex flex-col sm:flex-row gap-3">
           <Button variant="outline" className="flex-1" onClick={onBack}>
-            <ArrowLeft data-icon="inline-start" />
             Edit inputs
           </Button>
           <Button
@@ -226,7 +224,6 @@ export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
             onClick={onViewSummary}
           >
             View full summary
-            <ArrowRight data-icon="inline-end" />
           </Button>
         </div>
         <Button
@@ -242,7 +239,6 @@ export default function ResultsStep({ results, onBack, onViewSummary }: Props) {
           }
         >
           Book a demo to capture these savings
-          <ExternalLink data-icon="inline-end" />
         </Button>
       </div>
     </div>

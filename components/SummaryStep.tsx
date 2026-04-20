@@ -24,7 +24,7 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
-import { ArrowLeft, ExternalLink, Lock, CheckCircle } from "lucide-react";
+import { Lock, CheckCircle } from "lucide-react";
 
 interface Props {
   results: CalculationResults;
@@ -91,10 +91,10 @@ export default function SummaryStep({ results, onBack }: Props) {
             <TableBody>
               {categories.map((cat) => (
                 <Fragment key={cat.name}>
-                  <TableRow className="bg-muted/50 hover:bg-muted/50">
+                  <TableRow className="bg-pivot-accent hover:bg-pivot-accent">
                     <TableCell
                       colSpan={3}
-                      className="px-5 py-2 font-semibold text-foreground text-xs uppercase tracking-wide"
+                      className="px-5 py-2.5 font-semibold text-pivot-text text-xs uppercase tracking-wide"
                     >
                       {cat.name}
                     </TableCell>
@@ -151,25 +151,25 @@ export default function SummaryStep({ results, onBack }: Props) {
                 </Fragment>
               ))}
               {/* Grand total */}
-              <TableRow className="bg-pivot-dark hover:bg-pivot-dark font-bold">
-                <TableCell className="px-5 py-3 text-pivot-dark-text">
+              <TableRow className="bg-pivot-accent hover:bg-pivot-accent font-bold border-t-2 border-pivot-secondary">
+                <TableCell className="px-5 py-3.5 text-pivot-text">
                   Total annual savings
                 </TableCell>
-                <TableCell className="px-5 py-3 text-right tabular-nums text-pivot-dark-text">
+                <TableCell className="px-5 py-3.5 text-right tabular-nums text-pivot-text">
                   {formatCurrencyFull(results.totalAnnual.conservative)}
                 </TableCell>
-                <TableCell className="px-5 py-3 text-right tabular-nums text-pivot-primary">
+                <TableCell className="px-5 py-3.5 text-right tabular-nums text-pivot-text font-extrabold">
                   {formatCurrencyFull(results.totalAnnual.likely)}
                 </TableCell>
               </TableRow>
-              <TableRow className="bg-pivot-dark/80 hover:bg-pivot-dark/80 font-bold">
-                <TableCell className="px-5 py-3 text-pivot-dark-text">
+              <TableRow className="bg-pivot-accent/70 hover:bg-pivot-accent/70 font-bold">
+                <TableCell className="px-5 py-3.5 text-pivot-text">
                   3-year cumulative value
                 </TableCell>
-                <TableCell className="px-5 py-3 text-right tabular-nums text-pivot-dark-text">
+                <TableCell className="px-5 py-3.5 text-right tabular-nums text-pivot-text">
                   {formatCurrencyFull(results.threeYear.conservative.cumulative)}
                 </TableCell>
-                <TableCell className="px-5 py-3 text-right tabular-nums text-pivot-primary">
+                <TableCell className="px-5 py-3.5 text-right tabular-nums text-pivot-text font-extrabold">
                   {formatCurrencyFull(results.threeYear.likely.cumulative)}
                 </TableCell>
               </TableRow>
@@ -185,7 +185,6 @@ export default function SummaryStep({ results, onBack }: Props) {
             variant="outline"
             onClick={() => setDialogOpen(true)}
           >
-            <Lock data-icon="inline-start" />
             Unlock your full results
           </Button>
         </div>
@@ -239,7 +238,6 @@ export default function SummaryStep({ results, onBack }: Props) {
       {/* CTA */}
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
         <Button variant="outline" className="flex-1" onClick={onBack}>
-          <ArrowLeft data-icon="inline-start" />
           Back to results
         </Button>
         <Button
@@ -254,7 +252,6 @@ export default function SummaryStep({ results, onBack }: Props) {
           }
         >
           Book a demo
-          <ExternalLink data-icon="inline-end" />
         </Button>
       </div>
 

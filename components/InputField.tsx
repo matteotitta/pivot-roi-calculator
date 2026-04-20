@@ -89,10 +89,10 @@ export default function InputField({ config, value, onChange }: Props) {
       </div>
       <div
         className={cn(
-          "flex items-center rounded-lg border transition-all bg-background",
+          "flex items-center rounded-lg border-2 transition-all bg-muted/40 shadow-sm",
           focused
-            ? "border-ring ring-3 ring-ring/50"
-            : "border-input hover:border-foreground/30"
+            ? "border-ring ring-3 ring-ring/50 bg-background"
+            : "border-foreground/15 hover:border-foreground/40 hover:bg-muted/60"
         )}
       >
         {prefix && (

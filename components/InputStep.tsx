@@ -10,7 +10,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { ArrowRight } from "lucide-react";
 import InputField from "./InputField";
 
 interface Props {
@@ -32,7 +31,7 @@ export default function InputStep({ inputs, onInputChange, onCalculate }: Props)
         </p>
       </div>
 
-      <Card className="p-0">
+      <Card className="p-0 shadow-md border-foreground/10 bg-muted/20">
         <Accordion defaultValue={["spend"]}>
           {inputSections.map((section) => (
             <AccordionItem key={section.id} value={section.id}>
@@ -71,7 +70,6 @@ export default function InputStep({ inputs, onInputChange, onCalculate }: Props)
           onClick={onCalculate}
         >
           Calculate my ROI
-          <ArrowRight data-icon="inline-end" />
         </Button>
       </div>
     </div>
